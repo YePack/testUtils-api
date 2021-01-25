@@ -42,3 +42,12 @@ func NewInternalServerError(message string, err error) *RestErr {
 	}
 	return result
 }
+
+func NewRestError(message string, status int, err string, causes []interface{}) RestErr {
+	return RestErr{
+		Message: message,
+		Status: status,
+		Error: err,
+		Causes: causes,
+	}
+}
