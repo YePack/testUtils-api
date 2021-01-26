@@ -30,6 +30,14 @@ func NewNotFoundError(message string) *RestErr {
 	}
 }
 
+func NewUnauthorizedError(message string) *RestErr {
+	return &RestErr{
+		Message: "error with given access_token",
+		Status:  http.StatusUnauthorized,
+		Error:   "unauthorized",
+	}
+}
+
 func NewInternalServerError(message string, err error) *RestErr {
 	return &RestErr{
 		Message: message,
