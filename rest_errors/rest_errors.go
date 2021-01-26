@@ -6,10 +6,9 @@ import (
 )
 
 type RestErr struct {
-	Message string        `json:"message"`
-	Status  int           `json:"code"`
-	Error   string        `json:"error"`
-	Causes  []interface{} `json:"causes"`
+	Message string `json:"message"`
+	Status  int    `json:"code"`
+	Error   string `json:"error"`
 }
 
 func NewError(msg string) error {
@@ -32,22 +31,9 @@ func NewNotFoundError(message string) *RestErr {
 }
 
 func NewInternalServerError(message string, err error) *RestErr {
-	result := &RestErr{
+	return &RestErr{
 		Message: message,
 		Status:  http.StatusInternalServerError,
 		Error:   "internal_server_error",
-	}
-	if err != nil {
-		result.Causes = append(result.Causes, err.Error())
-	}
-	return result
-}
-
-func NewRestError(message string, status int, err string, causes []interface{}) RestErr {
-	return RestErr{
-		Message: message,
-		Status:  status,
-		Error:   err,
-		Causes:  causes,
 	}
 }
