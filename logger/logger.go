@@ -58,6 +58,7 @@ func getLevel() zapcore.Level{
 	default:
 		return zap.InfoLevel
 	}
+
 }
 
 func getOutput() string{
